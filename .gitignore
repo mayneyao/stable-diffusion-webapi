@@ -1,0 +1,8 @@
+wwwroot/*.js
+node_modules
+typings
+dist
+src/package.json
+src/git_push.sh
+src/tsconfig.json
+src/README.md

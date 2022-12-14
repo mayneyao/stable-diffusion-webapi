@@ -1,0 +1,8 @@
+{
+  "npmName": "stable-diffusion-webapi",
+  "nullSafeAdditionalProps": true,
+  "apiPackage": "stable-diffusion-webapi",
+  "modelPackage": "stable-diffusion-webapi",
+  "withSeparateModelsAndApi": true,
+  "withInterfaces": true
+}

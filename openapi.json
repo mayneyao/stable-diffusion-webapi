@@ -1,0 +1,2597 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/sdapi/v1/txt2img": {
+      "post": {
+        "summary": "Text2Imgapi",
+        "operationId": "text2imgapi_sdapi_v1_txt2img_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StableDiffusionProcessingTxt2Img"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextToImageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/img2img": {
+      "post": {
+        "summary": "Img2Imgapi",
+        "operationId": "img2imgapi_sdapi_v1_img2img_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StableDiffusionProcessingImg2Img"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToImageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/extra-single-image": {
+      "post": {
+        "summary": "Extras Single Image Api",
+        "operationId": "extras_single_image_api_sdapi_v1_extra_single_image_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtrasSingleImageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtrasSingleImageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/extra-batch-images": {
+      "post": {
+        "summary": "Extras Batch Images Api",
+        "operationId": "extras_batch_images_api_sdapi_v1_extra_batch_images_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtrasBatchImagesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtrasBatchImagesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/png-info": {
+      "post": {
+        "summary": "Pnginfoapi",
+        "operationId": "pnginfoapi_sdapi_v1_png_info_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PNGInfoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PNGInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/progress": {
+      "get": {
+        "summary": "Progressapi",
+        "operationId": "progressapi_sdapi_v1_progress_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Skip Current Image",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "skip_current_image",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/interrogate": {
+      "post": {
+        "summary": "Interrogateapi",
+        "operationId": "interrogateapi_sdapi_v1_interrogate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterrogateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/interrupt": {
+      "post": {
+        "summary": "Interruptapi",
+        "operationId": "interruptapi_sdapi_v1_interrupt_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/skip": {
+      "post": {
+        "summary": "Skip",
+        "operationId": "skip_sdapi_v1_skip_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/options": {
+      "get": {
+        "summary": "Get Config",
+        "operationId": "get_config_sdapi_v1_options_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Options"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Set Config",
+        "operationId": "set_config_sdapi_v1_options_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Req",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/cmd-flags": {
+      "get": {
+        "summary": "Get Cmd Flags",
+        "operationId": "get_cmd_flags_sdapi_v1_cmd_flags_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Flags"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/samplers": {
+      "get": {
+        "summary": "Get Samplers",
+        "operationId": "get_samplers_sdapi_v1_samplers_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Samplers Sdapi V1 Samplers Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SamplerItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/upscalers": {
+      "get": {
+        "summary": "Get Upscalers",
+        "operationId": "get_upscalers_sdapi_v1_upscalers_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Upscalers Sdapi V1 Upscalers Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UpscalerItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/sd-models": {
+      "get": {
+        "summary": "Get Sd Models",
+        "operationId": "get_sd_models_sdapi_v1_sd_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Sd Models Sdapi V1 Sd Models Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SDModelItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/hypernetworks": {
+      "get": {
+        "summary": "Get Hypernetworks",
+        "operationId": "get_hypernetworks_sdapi_v1_hypernetworks_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Hypernetworks Sdapi V1 Hypernetworks Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HypernetworkItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/face-restorers": {
+      "get": {
+        "summary": "Get Face Restorers",
+        "operationId": "get_face_restorers_sdapi_v1_face_restorers_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Face Restorers Sdapi V1 Face Restorers Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FaceRestorerItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/realesrgan-models": {
+      "get": {
+        "summary": "Get Realesrgan Models",
+        "operationId": "get_realesrgan_models_sdapi_v1_realesrgan_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Realesrgan Models Sdapi V1 Realesrgan Models Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RealesrganItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/prompt-styles": {
+      "get": {
+        "summary": "Get Promp Styles",
+        "operationId": "get_promp_styles_sdapi_v1_prompt_styles_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Promp Styles Sdapi V1 Prompt Styles Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PromptStyleItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/artist-categories": {
+      "get": {
+        "summary": "Get Artists Categories",
+        "operationId": "get_artists_categories_sdapi_v1_artist_categories_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Artists Categories Sdapi V1 Artist Categories Get",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdapi/v1/artists": {
+      "get": {
+        "summary": "Get Artists",
+        "operationId": "get_artists_sdapi_v1_artists_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Artists Sdapi V1 Artists Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtistItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ArtistItem": {
+        "title": "ArtistItem",
+        "required": [
+          "name",
+          "score",
+          "category"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          },
+          "category": {
+            "title": "Category",
+            "type": "string"
+          }
+        }
+      },
+      "ExtrasBatchImagesRequest": {
+        "title": "ExtrasBatchImagesRequest",
+        "required": [
+          "imageList"
+        ],
+        "type": "object",
+        "properties": {
+          "resize_mode": {
+            "title": "Resize Mode",
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer",
+            "description": "Sets the resize mode: 0 to upscale by upscaling_resize amount, 1 to upscale up to upscaling_resize_h x upscaling_resize_w.",
+            "default": 0
+          },
+          "show_extras_results": {
+            "title": "Show results",
+            "type": "boolean",
+            "description": "Should the backend return the generated image?",
+            "default": true
+          },
+          "gfpgan_visibility": {
+            "title": "GFPGAN Visibility",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the visibility of GFPGAN, values should be between 0 and 1.",
+            "default": 0
+          },
+          "codeformer_visibility": {
+            "title": "CodeFormer Visibility",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the visibility of CodeFormer, values should be between 0 and 1.",
+            "default": 0
+          },
+          "codeformer_weight": {
+            "title": "CodeFormer Weight",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the weight of CodeFormer, values should be between 0 and 1.",
+            "default": 0
+          },
+          "upscaling_resize": {
+            "title": "Upscaling Factor",
+            "maximum": 4.0,
+            "minimum": 1.0,
+            "type": "number",
+            "description": "By how much to upscale the image, only used when resize_mode=0.",
+            "default": 2
+          },
+          "upscaling_resize_w": {
+            "title": "Target Width",
+            "minimum": 1.0,
+            "type": "integer",
+            "description": "Target width for the upscaler to hit. Only used when resize_mode=1.",
+            "default": 512
+          },
+          "upscaling_resize_h": {
+            "title": "Target Height",
+            "minimum": 1.0,
+            "type": "integer",
+            "description": "Target height for the upscaler to hit. Only used when resize_mode=1.",
+            "default": 512
+          },
+          "upscaling_crop": {
+            "title": "Crop to fit",
+            "type": "boolean",
+            "description": "Should the upscaler crop the image to fit in the choosen size?",
+            "default": true
+          },
+          "upscaler_1": {
+            "title": "Main upscaler",
+            "type": "string",
+            "description": "The name of the main upscaler to use, it has to be one of this list: None , Lanczos , Nearest , LDSR , ScuNET GAN , ScuNET PSNR , SwinIR 4x , ESRGAN_4x",
+            "default": "None"
+          },
+          "upscaler_2": {
+            "title": "Secondary upscaler",
+            "type": "string",
+            "description": "The name of the secondary upscaler to use, it has to be one of this list: None , Lanczos , Nearest , LDSR , ScuNET GAN , ScuNET PSNR , SwinIR 4x , ESRGAN_4x",
+            "default": "None"
+          },
+          "extras_upscaler_2_visibility": {
+            "title": "Secondary upscaler visibility",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the visibility of secondary upscaler, values should be between 0 and 1.",
+            "default": 0
+          },
+          "upscale_first": {
+            "title": "Upscale first",
+            "type": "boolean",
+            "description": "Should the upscaler run before restoring faces?",
+            "default": false
+          },
+          "imageList": {
+            "title": "Images",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileData"
+            },
+            "description": "List of images to work on. Must be Base64 strings"
+          }
+        }
+      },
+      "ExtrasBatchImagesResponse": {
+        "title": "ExtrasBatchImagesResponse",
+        "required": [
+          "html_info",
+          "images"
+        ],
+        "type": "object",
+        "properties": {
+          "html_info": {
+            "title": "HTML info",
+            "type": "string",
+            "description": "A series of HTML tags containing the process info."
+          },
+          "images": {
+            "title": "Images",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The generated images in base64 format."
+          }
+        }
+      },
+      "ExtrasSingleImageRequest": {
+        "title": "ExtrasSingleImageRequest",
+        "type": "object",
+        "properties": {
+          "resize_mode": {
+            "title": "Resize Mode",
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer",
+            "description": "Sets the resize mode: 0 to upscale by upscaling_resize amount, 1 to upscale up to upscaling_resize_h x upscaling_resize_w.",
+            "default": 0
+          },
+          "show_extras_results": {
+            "title": "Show results",
+            "type": "boolean",
+            "description": "Should the backend return the generated image?",
+            "default": true
+          },
+          "gfpgan_visibility": {
+            "title": "GFPGAN Visibility",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the visibility of GFPGAN, values should be between 0 and 1.",
+            "default": 0
+          },
+          "codeformer_visibility": {
+            "title": "CodeFormer Visibility",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the visibility of CodeFormer, values should be between 0 and 1.",
+            "default": 0
+          },
+          "codeformer_weight": {
+            "title": "CodeFormer Weight",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the weight of CodeFormer, values should be between 0 and 1.",
+            "default": 0
+          },
+          "upscaling_resize": {
+            "title": "Upscaling Factor",
+            "maximum": 4.0,
+            "minimum": 1.0,
+            "type": "number",
+            "description": "By how much to upscale the image, only used when resize_mode=0.",
+            "default": 2
+          },
+          "upscaling_resize_w": {
+            "title": "Target Width",
+            "minimum": 1.0,
+            "type": "integer",
+            "description": "Target width for the upscaler to hit. Only used when resize_mode=1.",
+            "default": 512
+          },
+          "upscaling_resize_h": {
+            "title": "Target Height",
+            "minimum": 1.0,
+            "type": "integer",
+            "description": "Target height for the upscaler to hit. Only used when resize_mode=1.",
+            "default": 512
+          },
+          "upscaling_crop": {
+            "title": "Crop to fit",
+            "type": "boolean",
+            "description": "Should the upscaler crop the image to fit in the choosen size?",
+            "default": true
+          },
+          "upscaler_1": {
+            "title": "Main upscaler",
+            "type": "string",
+            "description": "The name of the main upscaler to use, it has to be one of this list: None , Lanczos , Nearest , LDSR , ScuNET GAN , ScuNET PSNR , SwinIR 4x , ESRGAN_4x",
+            "default": "None"
+          },
+          "upscaler_2": {
+            "title": "Secondary upscaler",
+            "type": "string",
+            "description": "The name of the secondary upscaler to use, it has to be one of this list: None , Lanczos , Nearest , LDSR , ScuNET GAN , ScuNET PSNR , SwinIR 4x , ESRGAN_4x",
+            "default": "None"
+          },
+          "extras_upscaler_2_visibility": {
+            "title": "Secondary upscaler visibility",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Sets the visibility of secondary upscaler, values should be between 0 and 1.",
+            "default": 0
+          },
+          "upscale_first": {
+            "title": "Upscale first",
+            "type": "boolean",
+            "description": "Should the upscaler run before restoring faces?",
+            "default": false
+          },
+          "image": {
+            "title": "Image",
+            "type": "string",
+            "description": "Image to work on, must be a Base64 string containing the image's data.",
+            "default": ""
+          }
+        }
+      },
+      "ExtrasSingleImageResponse": {
+        "title": "ExtrasSingleImageResponse",
+        "required": [
+          "html_info"
+        ],
+        "type": "object",
+        "properties": {
+          "html_info": {
+            "title": "HTML info",
+            "type": "string",
+            "description": "A series of HTML tags containing the process info."
+          },
+          "image": {
+            "title": "Image",
+            "type": "string",
+            "description": "The generated image in base64 format."
+          }
+        }
+      },
+      "FaceRestorerItem": {
+        "title": "FaceRestorerItem",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "cmd_dir": {
+            "title": "Path",
+            "type": "string"
+          }
+        }
+      },
+      "FileData": {
+        "title": "FileData",
+        "required": [
+          "data",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "title": "File data",
+            "type": "string",
+            "description": "Base64 representation of the file"
+          },
+          "name": {
+            "title": "File name",
+            "type": "string"
+          }
+        }
+      },
+      "Flags": {
+        "title": "Flags",
+        "type": "object",
+        "properties": {
+          "config": {
+            "title": "Config",
+            "type": "string",
+            "description": "path to config which constructs model",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\v1-inference.yaml"
+          },
+          "ckpt": {
+            "title": "Ckpt",
+            "type": "string",
+            "description": "path to checkpoint of stable diffusion model; if specified, this checkpoint will be added to the list of checkpoints and loaded",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\model.ckpt"
+          },
+          "ckpt_dir": {
+            "title": "Ckpt Dir",
+            "type": "string",
+            "description": "Path to directory with stable diffusion checkpoints"
+          },
+          "gfpgan_dir": {
+            "title": "Gfpgan Dir",
+            "type": "string",
+            "description": "GFPGAN directory",
+            "default": "./GFPGAN"
+          },
+          "gfpgan_model": {
+            "title": "Gfpgan Model",
+            "type": "string",
+            "description": "GFPGAN model file name"
+          },
+          "no_half": {
+            "title": "No Half",
+            "type": "boolean",
+            "description": "do not switch the model to 16-bit floats",
+            "default": false
+          },
+          "no_half_vae": {
+            "title": "No Half Vae",
+            "type": "boolean",
+            "description": "do not switch the VAE model to 16-bit floats",
+            "default": false
+          },
+          "no_progressbar_hiding": {
+            "title": "No Progressbar Hiding",
+            "type": "boolean",
+            "description": "do not hide progressbar in gradio UI (we hide it because it slows down ML if you have hardware acceleration in browser)",
+            "default": false
+          },
+          "max_batch_count": {
+            "title": "Max Batch Count",
+            "type": "integer",
+            "description": "maximum batch count value for the UI",
+            "default": 16
+          },
+          "embeddings_dir": {
+            "title": "Embeddings Dir",
+            "type": "string",
+            "description": "embeddings directory for textual inversion (default: embeddings)",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\embeddings"
+          },
+          "hypernetwork_dir": {
+            "title": "Hypernetwork Dir",
+            "type": "string",
+            "description": "hypernetwork directory",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\hypernetworks"
+          },
+          "localizations_dir": {
+            "title": "Localizations Dir",
+            "type": "string",
+            "description": "localizations directory",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\localizations"
+          },
+          "allow_code": {
+            "title": "Allow Code",
+            "type": "boolean",
+            "description": "allow custom script execution from webui",
+            "default": false
+          },
+          "medvram": {
+            "title": "Medvram",
+            "type": "boolean",
+            "description": "enable stable diffusion model optimizations for sacrificing a little speed for low VRM usage",
+            "default": false
+          },
+          "lowvram": {
+            "title": "Lowvram",
+            "type": "boolean",
+            "description": "enable stable diffusion model optimizations for sacrificing a lot of speed for very low VRM usage",
+            "default": false
+          },
+          "lowram": {
+            "title": "Lowram",
+            "type": "boolean",
+            "description": "load stable diffusion checkpoint weights to VRAM instead of RAM",
+            "default": false
+          },
+          "always_batch_cond_uncond": {
+            "title": "Always Batch Cond Uncond",
+            "type": "boolean",
+            "description": "disables cond/uncond batching that is enabled to save memory with --medvram or --lowvram",
+            "default": false
+          },
+          "unload_gfpgan": {
+            "title": "Unload Gfpgan",
+            "type": "boolean",
+            "description": "does not do anything.",
+            "default": false
+          },
+          "precision": {
+            "title": "Precision",
+            "type": "string",
+            "description": "evaluate at this precision",
+            "default": "autocast"
+          },
+          "share": {
+            "title": "Share",
+            "type": "boolean",
+            "description": "use share=True for gradio and make the UI accessible through their site",
+            "default": false
+          },
+          "ngrok": {
+            "title": "Ngrok",
+            "type": "string",
+            "description": "ngrok authtoken, alternative to gradio --share"
+          },
+          "ngrok_region": {
+            "title": "Ngrok Region",
+            "type": "string",
+            "description": "The region in which ngrok should start.",
+            "default": "us"
+          },
+          "enable_insecure_extension_access": {
+            "title": "Enable Insecure Extension Access",
+            "type": "boolean",
+            "description": "enable extensions tab regardless of other options",
+            "default": false
+          },
+          "codeformer_models_path": {
+            "title": "Codeformer Models Path",
+            "type": "string",
+            "description": "Path to directory with codeformer model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\Codeformer"
+          },
+          "gfpgan_models_path": {
+            "title": "Gfpgan Models Path",
+            "type": "string",
+            "description": "Path to directory with GFPGAN model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\GFPGAN"
+          },
+          "esrgan_models_path": {
+            "title": "Esrgan Models Path",
+            "type": "string",
+            "description": "Path to directory with ESRGAN model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\ESRGAN"
+          },
+          "bsrgan_models_path": {
+            "title": "Bsrgan Models Path",
+            "type": "string",
+            "description": "Path to directory with BSRGAN model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\BSRGAN"
+          },
+          "realesrgan_models_path": {
+            "title": "Realesrgan Models Path",
+            "type": "string",
+            "description": "Path to directory with RealESRGAN model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\RealESRGAN"
+          },
+          "clip_models_path": {
+            "title": "Clip Models Path",
+            "type": "string",
+            "description": "Path to directory with CLIP model file(s)."
+          },
+          "xformers": {
+            "title": "Xformers",
+            "type": "boolean",
+            "description": "enable xformers for cross attention layers",
+            "default": false
+          },
+          "force_enable_xformers": {
+            "title": "Force Enable Xformers",
+            "type": "boolean",
+            "description": "enable xformers for cross attention layers regardless of whether the checking code thinks you can run it; do not make bug reports if this fails to work",
+            "default": false
+          },
+          "deepdanbooru": {
+            "title": "Deepdanbooru",
+            "type": "boolean",
+            "description": "does not do anything",
+            "default": false
+          },
+          "opt_split_attention": {
+            "title": "Opt Split Attention",
+            "type": "boolean",
+            "description": "force-enables Doggettx's cross-attention layer optimization. By default, it's on for torch cuda.",
+            "default": false
+          },
+          "opt_split_attention_invokeai": {
+            "title": "Opt Split Attention Invokeai",
+            "type": "boolean",
+            "description": "force-enables InvokeAI's cross-attention layer optimization. By default, it's on when cuda is unavailable.",
+            "default": false
+          },
+          "opt_split_attention_v1": {
+            "title": "Opt Split Attention V1",
+            "type": "boolean",
+            "description": "enable older version of split attention optimization that does not consume all the VRAM it can find",
+            "default": false
+          },
+          "disable_opt_split_attention": {
+            "title": "Disable Opt Split Attention",
+            "type": "boolean",
+            "description": "force-disables cross-attention layer optimization",
+            "default": false
+          },
+          "use_cpu": {
+            "title": "Use Cpu",
+            "type": "array",
+            "items": {},
+            "description": "use CPU as torch device for specified modules",
+            "default": []
+          },
+          "listen": {
+            "title": "Listen",
+            "type": "boolean",
+            "description": "launch gradio with 0.0.0.0 as server name, allowing to respond to network requests",
+            "default": false
+          },
+          "port": {
+            "title": "Port",
+            "type": "string",
+            "description": "launch gradio with given server port, you need root/admin rights for ports < 1024, defaults to 7860 if available"
+          },
+          "show_negative_prompt": {
+            "title": "Show Negative Prompt",
+            "type": "boolean",
+            "description": "does not do anything",
+            "default": false
+          },
+          "ui_config_file": {
+            "title": "Ui Config File",
+            "type": "string",
+            "description": "filename to use for ui configuration",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\ui-config.json"
+          },
+          "hide_ui_dir_config": {
+            "title": "Hide Ui Dir Config",
+            "type": "boolean",
+            "description": "hide directory configuration from webui",
+            "default": false
+          },
+          "freeze_settings": {
+            "title": "Freeze Settings",
+            "type": "boolean",
+            "description": "disable editing settings",
+            "default": false
+          },
+          "ui_settings_file": {
+            "title": "Ui Settings File",
+            "type": "string",
+            "description": "filename to use for ui settings",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\config.json"
+          },
+          "gradio_debug": {
+            "title": "Gradio Debug",
+            "type": "boolean",
+            "description": "launch gradio with --debug option",
+            "default": false
+          },
+          "gradio_auth": {
+            "title": "Gradio Auth",
+            "type": "string",
+            "description": "set gradio authentication like \"username:password\"; or comma-delimit multiple like \"u1:p1,u2:p2,u3:p3\""
+          },
+          "gradio_img2img_tool": {
+            "title": "Gradio Img2Img Tool",
+            "type": "string",
+            "description": "gradio image uploader tool: can be either editor for ctopping, or color-sketch for drawing",
+            "default": "editor"
+          },
+          "gradio_inpaint_tool": {
+            "title": "Gradio Inpaint Tool",
+            "type": "string",
+            "description": "gradio inpainting editor: can be either sketch to only blur/noise the input, or color-sketch to paint over it",
+            "default": "sketch"
+          },
+          "opt_channelslast": {
+            "title": "Opt Channelslast",
+            "type": "boolean",
+            "description": "change memory type for stable diffusion to channels last",
+            "default": false
+          },
+          "styles_file": {
+            "title": "Styles File",
+            "type": "string",
+            "description": "filename to use for styles",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\styles.csv"
+          },
+          "autolaunch": {
+            "title": "Autolaunch",
+            "type": "boolean",
+            "description": "open the webui URL in the system's default browser upon launch",
+            "default": false
+          },
+          "theme": {
+            "title": "Theme",
+            "type": "string",
+            "description": "launches the UI with light or dark theme"
+          },
+          "use_textbox_seed": {
+            "title": "Use Textbox Seed",
+            "type": "boolean",
+            "description": "use textbox for seeds in UI (no up/down, but possible to input long seeds)",
+            "default": false
+          },
+          "disable_console_progressbars": {
+            "title": "Disable Console Progressbars",
+            "type": "boolean",
+            "description": "do not output progressbars to console",
+            "default": false
+          },
+          "enable_console_prompts": {
+            "title": "Enable Console Prompts",
+            "type": "boolean",
+            "description": "print prompts to console when generating with txt2img and img2img",
+            "default": false
+          },
+          "vae_path": {
+            "title": "Vae Path",
+            "type": "string",
+            "description": "Path to Variational Autoencoders model"
+          },
+          "disable_safe_unpickle": {
+            "title": "Disable Safe Unpickle",
+            "type": "boolean",
+            "description": "disable checking pytorch models for malicious code",
+            "default": false
+          },
+          "api": {
+            "title": "Api",
+            "type": "boolean",
+            "description": "use api=True to launch the API together with the webui (use --nowebui instead for only the API)",
+            "default": false
+          },
+          "api_auth": {
+            "title": "Api Auth",
+            "type": "string",
+            "description": "Set authentication for API like \"username:password\"; or comma-delimit multiple like \"u1:p1,u2:p2,u3:p3\""
+          },
+          "nowebui": {
+            "title": "Nowebui",
+            "type": "boolean",
+            "description": "use api=True to launch the API instead of the webui",
+            "default": false
+          },
+          "ui_debug_mode": {
+            "title": "Ui Debug Mode",
+            "type": "boolean",
+            "description": "Don't load model to quickly launch UI",
+            "default": false
+          },
+          "device_id": {
+            "title": "Device Id",
+            "type": "string",
+            "description": "Select the default CUDA device to use (export CUDA_VISIBLE_DEVICES=0,1,etc might be needed before)"
+          },
+          "administrator": {
+            "title": "Administrator",
+            "type": "boolean",
+            "description": "Administrator rights",
+            "default": false
+          },
+          "cors_allow_origins": {
+            "title": "Cors Allow Origins",
+            "type": "string",
+            "description": "Allowed CORS origin(s) in the form of a comma-separated list (no spaces)"
+          },
+          "cors_allow_origins_regex": {
+            "title": "Cors Allow Origins Regex",
+            "type": "string",
+            "description": "Allowed CORS origin(s) in the form of a single regular expression"
+          },
+          "tls_keyfile": {
+            "title": "Tls Keyfile",
+            "type": "string",
+            "description": "Partially enables TLS, requires --tls-certfile to fully function"
+          },
+          "tls_certfile": {
+            "title": "Tls Certfile",
+            "type": "string",
+            "description": "Partially enables TLS, requires --tls-keyfile to fully function"
+          },
+          "server_name": {
+            "title": "Server Name",
+            "type": "string",
+            "description": "Sets hostname of server"
+          },
+          "ldsr_models_path": {
+            "title": "Ldsr Models Path",
+            "type": "string",
+            "description": "Path to directory with LDSR model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\LDSR"
+          },
+          "scunet_models_path": {
+            "title": "Scunet Models Path",
+            "type": "string",
+            "description": "Path to directory with ScuNET model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\ScuNET"
+          },
+          "swinir_models_path": {
+            "title": "Swinir Models Path",
+            "type": "string",
+            "description": "Path to directory with SwinIR model file(s).",
+            "default": "C:\\Users\\dream\\workspace\\stable-diffusion-webui\\models\\SwinIR"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HypernetworkItem": {
+        "title": "HypernetworkItem",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        }
+      },
+      "ImageToImageResponse": {
+        "title": "ImageToImageResponse",
+        "required": [
+          "parameters",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "images": {
+            "title": "Image",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The generated image in base64 format."
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object"
+          },
+          "info": {
+            "title": "Info",
+            "type": "string"
+          }
+        }
+      },
+      "InterrogateRequest": {
+        "title": "InterrogateRequest",
+        "type": "object",
+        "properties": {
+          "image": {
+            "title": "Image",
+            "type": "string",
+            "description": "Image to work on, must be a Base64 string containing the image's data.",
+            "default": ""
+          },
+          "model": {
+            "title": "Model",
+            "type": "string",
+            "description": "The interrogate model used.",
+            "default": "clip"
+          }
+        }
+      },
+      "Options": {
+        "title": "Options",
+        "type": "object",
+        "properties": {
+          "samples_save": {
+            "title": "Samples Save",
+            "type": "boolean",
+            "description": "Always save all generated images",
+            "default": true
+          },
+          "samples_format": {
+            "title": "Samples Format",
+            "type": "string",
+            "description": "File format for images",
+            "default": "png"
+          },
+          "samples_filename_pattern": {
+            "title": "Samples Filename Pattern",
+            "type": "string",
+            "description": "Images filename pattern",
+            "default": ""
+          },
+          "save_images_add_number": {
+            "title": "Save Images Add Number",
+            "type": "boolean",
+            "description": "Add number to filename when saving",
+            "default": true
+          },
+          "grid_save": {
+            "title": "Grid Save",
+            "type": "boolean",
+            "description": "Always save all generated image grids",
+            "default": true
+          },
+          "grid_format": {
+            "title": "Grid Format",
+            "type": "string",
+            "description": "File format for grids",
+            "default": "png"
+          },
+          "grid_extended_filename": {
+            "title": "Grid Extended Filename",
+            "type": "boolean",
+            "description": "Add extended info (seed, prompt) to filename when saving grid",
+            "default": false
+          },
+          "grid_only_if_multiple": {
+            "title": "Grid Only If Multiple",
+            "type": "boolean",
+            "description": "Do not save grids consisting of one picture",
+            "default": true
+          },
+          "grid_prevent_empty_spots": {
+            "title": "Grid Prevent Empty Spots",
+            "type": "boolean",
+            "description": "Prevent empty spots in grid (when set to autodetect)",
+            "default": false
+          },
+          "n_rows": {
+            "title": "N Rows",
+            "type": "number",
+            "description": "Grid row count; use -1 for autodetect and 0 for it to be same as batch size",
+            "default": -1
+          },
+          "enable_pnginfo": {
+            "title": "Enable Pnginfo",
+            "type": "boolean",
+            "description": "Save text information about generation parameters as chunks to png files",
+            "default": true
+          },
+          "save_txt": {
+            "title": "Save Txt",
+            "type": "boolean",
+            "description": "Create a text file next to every image with generation parameters.",
+            "default": false
+          },
+          "save_images_before_face_restoration": {
+            "title": "Save Images Before Face Restoration",
+            "type": "boolean",
+            "description": "Save a copy of image before doing face restoration.",
+            "default": false
+          },
+          "save_images_before_highres_fix": {
+            "title": "Save Images Before Highres Fix",
+            "type": "boolean",
+            "description": "Save a copy of image before applying highres fix.",
+            "default": false
+          },
+          "save_images_before_color_correction": {
+            "title": "Save Images Before Color Correction",
+            "type": "boolean",
+            "description": "Save a copy of image before applying color correction to img2img results",
+            "default": false
+          },
+          "jpeg_quality": {
+            "title": "Jpeg Quality",
+            "type": "number",
+            "description": "Quality for saved jpeg images",
+            "default": 80
+          },
+          "export_for_4chan": {
+            "title": "Export For 4Chan",
+            "type": "boolean",
+            "description": "If PNG image is larger than 4MB or any dimension is larger than 4000, downscale and save copy as JPG",
+            "default": true
+          },
+          "use_original_name_batch": {
+            "title": "Use Original Name Batch",
+            "type": "boolean",
+            "description": "Use original name for output filename during batch process in extras tab",
+            "default": false
+          },
+          "save_selected_only": {
+            "title": "Save Selected Only",
+            "type": "boolean",
+            "description": "When using 'Save' button, only save a single selected image",
+            "default": true
+          },
+          "do_not_add_watermark": {
+            "title": "Do Not Add Watermark",
+            "type": "boolean",
+            "description": "Do not add watermark to images",
+            "default": false
+          },
+          "temp_dir": {
+            "title": "Temp Dir",
+            "type": "null",
+            "description": "Directory for temporary images; leave empty for default",
+            "default": ""
+          },
+          "clean_temp_dir_at_start": {
+            "title": "Clean Temp Dir At Start",
+            "type": "null",
+            "description": "Cleanup non-default temporary directory when starting webui",
+            "default": false
+          },
+          "outdir_samples": {
+            "title": "Outdir Samples",
+            "type": "string",
+            "description": "Output directory for images; if empty, defaults to three directories below",
+            "default": ""
+          },
+          "outdir_txt2img_samples": {
+            "title": "Outdir Txt2Img Samples",
+            "type": "string",
+            "description": "Output directory for txt2img images",
+            "default": "outputs/txt2img-images"
+          },
+          "outdir_img2img_samples": {
+            "title": "Outdir Img2Img Samples",
+            "type": "string",
+            "description": "Output directory for img2img images",
+            "default": "outputs/img2img-images"
+          },
+          "outdir_extras_samples": {
+            "title": "Outdir Extras Samples",
+            "type": "string",
+            "description": "Output directory for images from extras tab",
+            "default": "outputs/extras-images"
+          },
+          "outdir_grids": {
+            "title": "Outdir Grids",
+            "type": "string",
+            "description": "Output directory for grids; if empty, defaults to two directories below",
+            "default": ""
+          },
+          "outdir_txt2img_grids": {
+            "title": "Outdir Txt2Img Grids",
+            "type": "string",
+            "description": "Output directory for txt2img grids",
+            "default": "outputs/txt2img-grids"
+          },
+          "outdir_img2img_grids": {
+            "title": "Outdir Img2Img Grids",
+            "type": "string",
+            "description": "Output directory for img2img grids",
+            "default": "outputs/img2img-grids"
+          },
+          "outdir_save": {
+            "title": "Outdir Save",
+            "type": "string",
+            "description": "Directory for saving images using the Save button",
+            "default": "log/images"
+          },
+          "save_to_dirs": {
+            "title": "Save To Dirs",
+            "type": "boolean",
+            "description": "Save images to a subdirectory",
+            "default": false
+          },
+          "grid_save_to_dirs": {
+            "title": "Grid Save To Dirs",
+            "type": "boolean",
+            "description": "Save grids to a subdirectory",
+            "default": false
+          },
+          "use_save_to_dirs_for_ui": {
+            "title": "Use Save To Dirs For Ui",
+            "type": "boolean",
+            "description": "When using \"Save\" button, save images to a subdirectory",
+            "default": false
+          },
+          "directories_filename_pattern": {
+            "title": "Directories Filename Pattern",
+            "type": "string",
+            "description": "Directory name pattern",
+            "default": ""
+          },
+          "directories_max_prompt_words": {
+            "title": "Directories Max Prompt Words",
+            "type": "number",
+            "description": "Max prompt words for [prompt_words] pattern",
+            "default": 8
+          },
+          "ESRGAN_tile": {
+            "title": "Esrgan Tile",
+            "type": "number",
+            "description": "Tile size for ESRGAN upscalers. 0 = no tiling.",
+            "default": 192
+          },
+          "ESRGAN_tile_overlap": {
+            "title": "Esrgan Tile Overlap",
+            "type": "number",
+            "description": "Tile overlap, in pixels for ESRGAN upscalers. Low values = visible seam.",
+            "default": 8
+          },
+          "realesrgan_enabled_models": {
+            "title": "Realesrgan Enabled Models",
+            "type": "array",
+            "items": {},
+            "description": "Select which Real-ESRGAN models to show in the web UI. (Requires restart)",
+            "default": [
+              "R-ESRGAN 4x+",
+              "R-ESRGAN 4x+ Anime6B"
+            ]
+          },
+          "upscaler_for_img2img": {
+            "title": "Upscaler For Img2Img",
+            "type": "null",
+            "description": "Upscaler for img2img"
+          },
+          "use_scale_latent_for_hires_fix": {
+            "title": "Use Scale Latent For Hires Fix",
+            "type": "boolean",
+            "description": "Upscale latent space image when doing hires. fix",
+            "default": false
+          },
+          "face_restoration_model": {
+            "title": "Face Restoration Model",
+            "type": "string",
+            "description": "Face restoration model"
+          },
+          "code_former_weight": {
+            "title": "Code Former Weight",
+            "type": "number",
+            "description": "CodeFormer weight parameter; 0 = maximum effect; 1 = minimum effect",
+            "default": 0.5
+          },
+          "face_restoration_unload": {
+            "title": "Face Restoration Unload",
+            "type": "boolean",
+            "description": "Move face restoration model from VRAM into RAM after processing",
+            "default": false
+          },
+          "memmon_poll_rate": {
+            "title": "Memmon Poll Rate",
+            "type": "number",
+            "description": "VRAM usage polls per second during generation. Set to 0 to disable.",
+            "default": 8
+          },
+          "samples_log_stdout": {
+            "title": "Samples Log Stdout",
+            "type": "boolean",
+            "description": "Always print all generation info to standard output",
+            "default": false
+          },
+          "multiple_tqdm": {
+            "title": "Multiple Tqdm",
+            "type": "boolean",
+            "description": "Add a second progress bar to the console that shows progress for an entire job.",
+            "default": true
+          },
+          "unload_models_when_training": {
+            "title": "Unload Models When Training",
+            "type": "boolean",
+            "description": "Move VAE and CLIP to RAM when training if possible. Saves VRAM.",
+            "default": false
+          },
+          "pin_memory": {
+            "title": "Pin Memory",
+            "type": "null",
+            "description": "Turn on pin_memory for DataLoader. Makes training slightly faster but can increase memory usage.",
+            "default": false
+          },
+          "save_optimizer_state": {
+            "title": "Save Optimizer State",
+            "type": "boolean",
+            "description": "Saves Optimizer state as separate *.optim file. Training can be resumed with HN itself and matching optim file.",
+            "default": false
+          },
+          "dataset_filename_word_regex": {
+            "title": "Dataset Filename Word Regex",
+            "type": "string",
+            "description": "Filename word regex",
+            "default": ""
+          },
+          "dataset_filename_join_string": {
+            "title": "Dataset Filename Join String",
+            "type": "string",
+            "description": "Filename join string",
+            "default": " "
+          },
+          "training_image_repeats_per_epoch": {
+            "title": "Training Image Repeats Per Epoch",
+            "type": "number",
+            "description": "Number of repeats for a single input image per epoch; used only for displaying epoch number",
+            "default": 1
+          },
+          "training_write_csv_every": {
+            "title": "Training Write Csv Every",
+            "type": "number",
+            "description": "Save an csv containing the loss to log directory every N steps, 0 to disable",
+            "default": 500
+          },
+          "training_xattention_optimizations": {
+            "title": "Training Xattention Optimizations",
+            "type": "boolean",
+            "description": "Use cross attention optimizations while training",
+            "default": false
+          },
+          "sd_model_checkpoint": {
+            "title": "Sd Model Checkpoint",
+            "type": "string",
+            "description": "Stable Diffusion checkpoint"
+          },
+          "sd_checkpoint_cache": {
+            "title": "Sd Checkpoint Cache",
+            "type": "number",
+            "description": "Checkpoints to cache in RAM",
+            "default": 0
+          },
+          "sd_vae": {
+            "title": "Sd Vae",
+            "type": "string",
+            "description": "SD VAE",
+            "default": "auto"
+          },
+          "sd_vae_as_default": {
+            "title": "Sd Vae As Default",
+            "type": "null",
+            "description": "Ignore selected VAE for stable diffusion checkpoints that have their own .vae.pt next to them",
+            "default": false
+          },
+          "sd_hypernetwork": {
+            "title": "Sd Hypernetwork",
+            "type": "string",
+            "description": "Hypernetwork",
+            "default": "None"
+          },
+          "sd_hypernetwork_strength": {
+            "title": "Sd Hypernetwork Strength",
+            "type": "integer",
+            "description": "Hypernetwork strength",
+            "default": 1.0
+          },
+          "inpainting_mask_weight": {
+            "title": "Inpainting Mask Weight",
+            "type": "integer",
+            "description": "Inpainting conditioning mask strength",
+            "default": 1.0
+          },
+          "img2img_color_correction": {
+            "title": "Img2Img Color Correction",
+            "type": "boolean",
+            "description": "Apply color correction to img2img results to match original colors.",
+            "default": false
+          },
+          "img2img_fix_steps": {
+            "title": "Img2Img Fix Steps",
+            "type": "boolean",
+            "description": "With img2img, do exactly the amount of steps the slider specifies (normally you'd do less with less denoising).",
+            "default": false
+          },
+          "enable_quantization": {
+            "title": "Enable Quantization",
+            "type": "boolean",
+            "description": "Enable quantization in K samplers for sharper and cleaner results. This may change existing seeds. Requires restart to apply.",
+            "default": false
+          },
+          "enable_emphasis": {
+            "title": "Enable Emphasis",
+            "type": "boolean",
+            "description": "Emphasis: use (text) to make model pay more attention to text and [text] to make it pay less attention",
+            "default": true
+          },
+          "use_old_emphasis_implementation": {
+            "title": "Use Old Emphasis Implementation",
+            "type": "boolean",
+            "description": "Use old emphasis implementation. Can be useful to reproduce old seeds.",
+            "default": false
+          },
+          "enable_batch_seeds": {
+            "title": "Enable Batch Seeds",
+            "type": "boolean",
+            "description": "Make K-diffusion samplers produce same images in a batch as when making a single image",
+            "default": true
+          },
+          "comma_padding_backtrack": {
+            "title": "Comma Padding Backtrack",
+            "type": "number",
+            "description": "Increase coherency by padding from the last comma within n tokens when using more than 75 tokens",
+            "default": 20
+          },
+          "filter_nsfw": {
+            "title": "Filter Nsfw",
+            "type": "boolean",
+            "description": "Filter NSFW content",
+            "default": false
+          },
+          "CLIP_stop_at_last_layers": {
+            "title": "Clip Stop At Last Layers",
+            "type": "number",
+            "description": "Clip skip",
+            "default": 1
+          },
+          "random_artist_categories": {
+            "title": "Random Artist Categories",
+            "type": "array",
+            "items": {},
+            "description": "Allowed categories for random artists selection when using the Roll button",
+            "default": []
+          },
+          "interrogate_keep_models_in_memory": {
+            "title": "Interrogate Keep Models In Memory",
+            "type": "boolean",
+            "description": "Interrogate: keep models in VRAM",
+            "default": false
+          },
+          "interrogate_use_builtin_artists": {
+            "title": "Interrogate Use Builtin Artists",
+            "type": "boolean",
+            "description": "Interrogate: use artists from artists.csv",
+            "default": true
+          },
+          "interrogate_return_ranks": {
+            "title": "Interrogate Return Ranks",
+            "type": "boolean",
+            "description": "Interrogate: include ranks of model tags matches in results (Has no effect on caption-based interrogators).",
+            "default": false
+          },
+          "interrogate_clip_num_beams": {
+            "title": "Interrogate Clip Num Beams",
+            "type": "number",
+            "description": "Interrogate: num_beams for BLIP",
+            "default": 1
+          },
+          "interrogate_clip_min_length": {
+            "title": "Interrogate Clip Min Length",
+            "type": "number",
+            "description": "Interrogate: minimum description length (excluding artists, etc..)",
+            "default": 24
+          },
+          "interrogate_clip_max_length": {
+            "title": "Interrogate Clip Max Length",
+            "type": "number",
+            "description": "Interrogate: maximum description length",
+            "default": 48
+          },
+          "interrogate_clip_dict_limit": {
+            "title": "Interrogate Clip Dict Limit",
+            "type": "number",
+            "description": "CLIP: maximum number of lines in text file (0 = No limit)",
+            "default": 1500
+          },
+          "interrogate_deepbooru_score_threshold": {
+            "title": "Interrogate Deepbooru Score Threshold",
+            "type": "number",
+            "description": "Interrogate: deepbooru score threshold",
+            "default": 0.5
+          },
+          "deepbooru_sort_alpha": {
+            "title": "Deepbooru Sort Alpha",
+            "type": "boolean",
+            "description": "Interrogate: deepbooru sort alphabetically",
+            "default": true
+          },
+          "deepbooru_use_spaces": {
+            "title": "Deepbooru Use Spaces",
+            "type": "boolean",
+            "description": "use spaces for tags in deepbooru",
+            "default": false
+          },
+          "deepbooru_escape": {
+            "title": "Deepbooru Escape",
+            "type": "boolean",
+            "description": "escape (\\) brackets in deepbooru (so they are used as literal brackets and not for emphasis)",
+            "default": true
+          },
+          "show_progressbar": {
+            "title": "Show Progressbar",
+            "type": "boolean",
+            "description": "Show progressbar",
+            "default": true
+          },
+          "show_progress_every_n_steps": {
+            "title": "Show Progress Every N Steps",
+            "type": "number",
+            "description": "Show image creation progress every N sampling steps. Set to 0 to disable. Set to -1 to show after completion of batch.",
+            "default": 0
+          },
+          "show_progress_grid": {
+            "title": "Show Progress Grid",
+            "type": "boolean",
+            "description": "Show previews of all images generated in a batch as a grid",
+            "default": true
+          },
+          "return_grid": {
+            "title": "Return Grid",
+            "type": "boolean",
+            "description": "Show grid in results for web",
+            "default": true
+          },
+          "do_not_show_images": {
+            "title": "Do Not Show Images",
+            "type": "boolean",
+            "description": "Do not show any images in results for web",
+            "default": false
+          },
+          "add_model_hash_to_info": {
+            "title": "Add Model Hash To Info",
+            "type": "boolean",
+            "description": "Add model hash to generation information",
+            "default": true
+          },
+          "add_model_name_to_info": {
+            "title": "Add Model Name To Info",
+            "type": "boolean",
+            "description": "Add model name to generation information",
+            "default": false
+          },
+          "disable_weights_auto_swap": {
+            "title": "Disable Weights Auto Swap",
+            "type": "boolean",
+            "description": "When reading generation parameters from text into UI (from PNG info or pasted text), do not change the selected model/checkpoint.",
+            "default": false
+          },
+          "send_seed": {
+            "title": "Send Seed",
+            "type": "boolean",
+            "description": "Send seed when sending prompt or image to other interface",
+            "default": true
+          },
+          "font": {
+            "title": "Font",
+            "type": "string",
+            "description": "Font for image grids that have text",
+            "default": ""
+          },
+          "js_modal_lightbox": {
+            "title": "Js Modal Lightbox",
+            "type": "boolean",
+            "description": "Enable full page image viewer",
+            "default": true
+          },
+          "js_modal_lightbox_initially_zoomed": {
+            "title": "Js Modal Lightbox Initially Zoomed",
+            "type": "boolean",
+            "description": "Show images zoomed in by default in full page image viewer",
+            "default": true
+          },
+          "show_progress_in_title": {
+            "title": "Show Progress In Title",
+            "type": "boolean",
+            "description": "Show generation progress in window title.",
+            "default": true
+          },
+          "quicksettings": {
+            "title": "Quicksettings",
+            "type": "string",
+            "description": "Quicksettings list",
+            "default": "sd_model_checkpoint"
+          },
+          "localization": {
+            "title": "Localization",
+            "type": "string",
+            "description": "Localization (requires restart)",
+            "default": "None"
+          },
+          "hide_samplers": {
+            "title": "Hide Samplers",
+            "type": "array",
+            "items": {},
+            "description": "Hide samplers in user interface (requires restart)",
+            "default": []
+          },
+          "eta_ddim": {
+            "title": "Eta Ddim",
+            "type": "integer",
+            "description": "eta (noise multiplier) for DDIM",
+            "default": 0.0
+          },
+          "eta_ancestral": {
+            "title": "Eta Ancestral",
+            "type": "integer",
+            "description": "eta (noise multiplier) for ancestral samplers",
+            "default": 1.0
+          },
+          "ddim_discretize": {
+            "title": "Ddim Discretize",
+            "type": "string",
+            "description": "img2img DDIM discretize",
+            "default": "uniform"
+          },
+          "s_churn": {
+            "title": "S Churn",
+            "type": "integer",
+            "description": "sigma churn",
+            "default": 0.0
+          },
+          "s_tmin": {
+            "title": "S Tmin",
+            "type": "integer",
+            "description": "sigma tmin",
+            "default": 0.0
+          },
+          "s_noise": {
+            "title": "S Noise",
+            "type": "integer",
+            "description": "sigma noise",
+            "default": 1.0
+          },
+          "eta_noise_seed_delta": {
+            "title": "Eta Noise Seed Delta",
+            "type": "number",
+            "description": "Eta noise seed delta",
+            "default": 0
+          },
+          "disabled_extensions": {
+            "title": "Disabled Extensions",
+            "type": "array",
+            "items": {},
+            "description": "Disable those extensions",
+            "default": []
+          }
+        }
+      },
+      "PNGInfoRequest": {
+        "title": "PNGInfoRequest",
+        "required": [
+          "image"
+        ],
+        "type": "object",
+        "properties": {
+          "image": {
+            "title": "Image",
+            "type": "string",
+            "description": "The base64 encoded PNG image"
+          }
+        }
+      },
+      "PNGInfoResponse": {
+        "title": "PNGInfoResponse",
+        "required": [
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "info": {
+            "title": "Image info",
+            "type": "string",
+            "description": "A string with all the info the image had"
+          }
+        }
+      },
+      "ProgressResponse": {
+        "title": "ProgressResponse",
+        "required": [
+          "progress",
+          "eta_relative",
+          "state"
+        ],
+        "type": "object",
+        "properties": {
+          "progress": {
+            "title": "Progress",
+            "type": "number",
+            "description": "The progress with a range of 0 to 1"
+          },
+          "eta_relative": {
+            "title": "ETA in secs",
+            "type": "number"
+          },
+          "state": {
+            "title": "State",
+            "type": "object",
+            "description": "The current state snapshot"
+          },
+          "current_image": {
+            "title": "Current image",
+            "type": "string",
+            "description": "The current image in base64 format. opts.show_progress_every_n_steps is required for this to work."
+          }
+        }
+      },
+      "PromptStyleItem": {
+        "title": "PromptStyleItem",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "negative_prompt": {
+            "title": "Negative Prompt",
+            "type": "string"
+          }
+        }
+      },
+      "RealesrganItem": {
+        "title": "RealesrganItem",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "scale": {
+            "title": "Scale",
+            "type": "integer"
+          }
+        }
+      },
+      "SDModelItem": {
+        "title": "SDModelItem",
+        "required": [
+          "title",
+          "model_name",
+          "hash",
+          "filename",
+          "config"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "hash": {
+            "title": "Hash",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "config": {
+            "title": "Config file",
+            "type": "string"
+          }
+        }
+      },
+      "SamplerItem": {
+        "title": "SamplerItem",
+        "required": [
+          "name",
+          "aliases",
+          "options"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "aliases": {
+            "title": "Aliases",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "options": {
+            "title": "Options",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "StableDiffusionProcessingImg2Img": {
+        "title": "StableDiffusionProcessingImg2Img",
+        "type": "object",
+        "properties": {
+          "init_images": {
+            "title": "Init Images",
+            "type": "array",
+            "items": {}
+          },
+          "resize_mode": {
+            "title": "Resize Mode",
+            "type": "integer",
+            "default": 0
+          },
+          "denoising_strength": {
+            "title": "Denoising Strength",
+            "type": "number",
+            "default": 0.75
+          },
+          "mask": {
+            "title": "Mask",
+            "type": "string"
+          },
+          "mask_blur": {
+            "title": "Mask Blur",
+            "type": "integer",
+            "default": 4
+          },
+          "inpainting_fill": {
+            "title": "Inpainting Fill",
+            "type": "integer",
+            "default": 0
+          },
+          "inpaint_full_res": {
+            "title": "Inpaint Full Res",
+            "type": "boolean",
+            "default": true
+          },
+          "inpaint_full_res_padding": {
+            "title": "Inpaint Full Res Padding",
+            "type": "integer",
+            "default": 0
+          },
+          "inpainting_mask_invert": {
+            "title": "Inpainting Mask Invert",
+            "type": "integer",
+            "default": 0
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string",
+            "default": ""
+          },
+          "styles": {
+            "title": "Styles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "seed": {
+            "title": "Seed",
+            "type": "integer",
+            "default": -1
+          },
+          "subseed": {
+            "title": "Subseed",
+            "type": "integer",
+            "default": -1
+          },
+          "subseed_strength": {
+            "title": "Subseed Strength",
+            "type": "number",
+            "default": 0
+          },
+          "seed_resize_from_h": {
+            "title": "Seed Resize From H",
+            "type": "integer",
+            "default": -1
+          },
+          "seed_resize_from_w": {
+            "title": "Seed Resize From W",
+            "type": "integer",
+            "default": -1
+          },
+          "sampler_name": {
+            "title": "Sampler Name",
+            "type": "string"
+          },
+          "batch_size": {
+            "title": "Batch Size",
+            "type": "integer",
+            "default": 1
+          },
+          "n_iter": {
+            "title": "N Iter",
+            "type": "integer",
+            "default": 1
+          },
+          "steps": {
+            "title": "Steps",
+            "type": "integer",
+            "default": 50
+          },
+          "cfg_scale": {
+            "title": "Cfg Scale",
+            "type": "number",
+            "default": 7.0
+          },
+          "width": {
+            "title": "Width",
+            "type": "integer",
+            "default": 512
+          },
+          "height": {
+            "title": "Height",
+            "type": "integer",
+            "default": 512
+          },
+          "restore_faces": {
+            "title": "Restore Faces",
+            "type": "boolean",
+            "default": false
+          },
+          "tiling": {
+            "title": "Tiling",
+            "type": "boolean",
+            "default": false
+          },
+          "negative_prompt": {
+            "title": "Negative Prompt",
+            "type": "string"
+          },
+          "eta": {
+            "title": "Eta",
+            "type": "number"
+          },
+          "s_churn": {
+            "title": "S Churn",
+            "type": "number",
+            "default": 0.0
+          },
+          "s_tmax": {
+            "title": "S Tmax",
+            "type": "number"
+          },
+          "s_tmin": {
+            "title": "S Tmin",
+            "type": "number",
+            "default": 0.0
+          },
+          "s_noise": {
+            "title": "S Noise",
+            "type": "number",
+            "default": 1.0
+          },
+          "override_settings": {
+            "title": "Override Settings",
+            "type": "object"
+          },
+          "sampler_index": {
+            "title": "Sampler Index",
+            "type": "string",
+            "default": "Euler"
+          },
+          "include_init_images": {
+            "title": "Include Init Images",
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "StableDiffusionProcessingTxt2Img": {
+        "title": "StableDiffusionProcessingTxt2Img",
+        "type": "object",
+        "properties": {
+          "enable_hr": {
+            "title": "Enable Hr",
+            "type": "boolean",
+            "default": false
+          },
+          "denoising_strength": {
+            "title": "Denoising Strength",
+            "type": "number",
+            "default": 0
+          },
+          "firstphase_width": {
+            "title": "Firstphase Width",
+            "type": "integer",
+            "default": 0
+          },
+          "firstphase_height": {
+            "title": "Firstphase Height",
+            "type": "integer",
+            "default": 0
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string",
+            "default": ""
+          },
+          "styles": {
+            "title": "Styles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "seed": {
+            "title": "Seed",
+            "type": "integer",
+            "default": -1
+          },
+          "subseed": {
+            "title": "Subseed",
+            "type": "integer",
+            "default": -1
+          },
+          "subseed_strength": {
+            "title": "Subseed Strength",
+            "type": "number",
+            "default": 0
+          },
+          "seed_resize_from_h": {
+            "title": "Seed Resize From H",
+            "type": "integer",
+            "default": -1
+          },
+          "seed_resize_from_w": {
+            "title": "Seed Resize From W",
+            "type": "integer",
+            "default": -1
+          },
+          "sampler_name": {
+            "title": "Sampler Name",
+            "type": "string"
+          },
+          "batch_size": {
+            "title": "Batch Size",
+            "type": "integer",
+            "default": 1
+          },
+          "n_iter": {
+            "title": "N Iter",
+            "type": "integer",
+            "default": 1
+          },
+          "steps": {
+            "title": "Steps",
+            "type": "integer",
+            "default": 50
+          },
+          "cfg_scale": {
+            "title": "Cfg Scale",
+            "type": "number",
+            "default": 7.0
+          },
+          "width": {
+            "title": "Width",
+            "type": "integer",
+            "default": 512
+          },
+          "height": {
+            "title": "Height",
+            "type": "integer",
+            "default": 512
+          },
+          "restore_faces": {
+            "title": "Restore Faces",
+            "type": "boolean",
+            "default": false
+          },
+          "tiling": {
+            "title": "Tiling",
+            "type": "boolean",
+            "default": false
+          },
+          "negative_prompt": {
+            "title": "Negative Prompt",
+            "type": "string"
+          },
+          "eta": {
+            "title": "Eta",
+            "type": "number"
+          },
+          "s_churn": {
+            "title": "S Churn",
+            "type": "number",
+            "default": 0.0
+          },
+          "s_tmax": {
+            "title": "S Tmax",
+            "type": "number"
+          },
+          "s_tmin": {
+            "title": "S Tmin",
+            "type": "number",
+            "default": 0.0
+          },
+          "s_noise": {
+            "title": "S Noise",
+            "type": "number",
+            "default": 1.0
+          },
+          "override_settings": {
+            "title": "Override Settings",
+            "type": "object"
+          },
+          "sampler_index": {
+            "title": "Sampler Index",
+            "type": "string",
+            "default": "Euler"
+          }
+        }
+      },
+      "TextToImageResponse": {
+        "title": "TextToImageResponse",
+        "required": [
+          "parameters",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "images": {
+            "title": "Image",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The generated image in base64 format."
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object"
+          },
+          "info": {
+            "title": "Info",
+            "type": "string"
+          }
+        }
+      },
+      "UpscalerItem": {
+        "title": "UpscalerItem",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "model_url": {
+            "title": "URL",
+            "type": "string"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
